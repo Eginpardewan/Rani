@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rani Agustin — Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    /* Warna utama dan efek gradien berubah */
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      color: #111827;
+      background: linear-gradient(-45deg, #fdfbfb, #f3e7e9, #e3eeff, #f9f5ff);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      max-width: 600px;
+      width: 90%;
+      backdrop-filter: blur(10px);
+    }
+
+    .portrait {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 24px rgba(43, 58, 103, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .portrait:hover { transform: scale(1.05); }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      color: #2b3a67;
+      font-weight: 700;
+    }
+
+    .heart {
+      font-size: 30px;
+      color: #e2556b;
+      margin: 10px 0;
+    }
+
+    .calligraphy {
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: #223155;
+      margin-top: 10px;
+    }
+
+    .sub {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    /* Tombol musik */
+    #toggleMusic {
+      margin-top: 20px;
+      background: #e2556b;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #toggleMusic:hover {
+      background: #c8475b;
+    }
+
+    @media (max-width: 480px) {
+      .portrait { width: 160px; height: 160px; }
+      .calligraphy { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Gambar -->
+    <img 
+      src="rani.jpg" 
+      alt="Foto Rani Agustin" 
+      class="portrait" 
+      onerror="this.src='https://via.placeholder.com/220x220?text=Gambar+Tidak+Ditemukan'">
+
+    <!-- Nama dan teks -->
+    <h1>Rani Agustin</h1>
+    <div class="heart">❤️</div>
+    <div class="calligraphy">Dalam setiap senyummu, kutemukan rumah bagi rinduku.</div>
+    <div class="sub">Semangat PKL-nya 🌸</div>
+
+    <!-- Musik autoplay -->
+    <audio id="bgMusic" autoplay loop>
+      <source src="lagu.mp3" type="audio/mpeg">
+      Browser Anda tidak mendukung pemutar audio.
+    </audio>
+
+    <!-- Tombol kontrol -->
+    <button id="toggleMusic">🔊 Matikan Musik</button>
+  </div>
+
+  <script>
+  const music = document.getElementById('bgMusic');
+  const toggle = document.getElementById('toggleMusic');
+  let playing = false;
+
+  // Aktifkan musik saat user pertama kali klik di mana pun
+  document.body.addEventListener('click', () => {
+    if (!playing) {
+      music.play();
+      playing = true;
+      toggle.textContent = '🔊 Matikan Musik';
+    }
+  }, { once: true });
+
+  // Tombol kontrol manual
+  toggle.addEventListener('click', () => {
+    if (playing) {
+      music.pause();
+      toggle.textContent = '🔈 Nyalakan Musik';
+    } else {
+      music.play();
+      toggle.textContent = '🔊 Matikan Musik';
+    }
+    playing = !playing;
+  });
+</script>
+
+</body>
+</html>
